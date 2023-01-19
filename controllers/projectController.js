@@ -14,12 +14,12 @@ const postProject = asyncHandeler(async(req,res) =>{
     const projects = await Project.create({
         title: req.body.title,
         description: req.body.description,
-        // class: req.body.class,
-        // client: req.body.client,
-        // Location: req.body.Location,
-        // Consultant: req.body.Consultant,
-        // architect: req.body.architect,
-        // img: req.body.img
+        class: req.body.class,
+        client: req.body.client,
+        Location: req.body.Location,
+        Consultant: req.body.Consultant,
+        architect: req.body.architect,
+        img: req.body.img
 
         // const newUser = req.body;
         // const result =  await usersCollection.insertOne(newUser)
@@ -30,21 +30,35 @@ const postProject = asyncHandeler(async(req,res) =>{
         
 
 
-      
+       
     })
+    projects.save()
     res.status(200).json(projects)
 })
 const putProject = asyncHandeler(async(req,res) =>{
-    res.status(200).json({
-        message:"updated Project info"
+    const projects = await Project.findById(req.params.id)
+    if(!projects){
+        res.status(400)
+        throw new Error('Project not found')
+
+    }
+    const updateProject = await Project.findById(req.params.id,req.body,{
+        new:true
     })
+    
+    res.status(200).json(updateProject)
 })
 const deleteProject = asyncHandeler(async(req,res) =>{
-    res.status(200).json({
-        message:"delete  Project "
-    })
-})
+    const projects = await Project.findById(req.params.id)
+    if(!projects){
+        res.status(400)
+        throw new Error('Project not found')
 
+    }
+    await projects.remove()
+    res.status(200).json({ id: req.params.id })
+})
+ 
 module.exports ={
 
     getProject,
