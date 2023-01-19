@@ -23,6 +23,7 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use('/api/project',require('./routes/projectRoutes'))
+app.use('/api/team',require('./routes/teamRoutes'))
 app.use(errorHandler)
 // const uri = 
 // `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.4t39k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
