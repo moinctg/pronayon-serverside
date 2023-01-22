@@ -10,12 +10,18 @@ const teamSchema = mongoose.Schema({
         required:[true,'Pls type a  department ']
     },
     department:{
-        type:String,
-        required:[true,'Pls type a  Category Class ']
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:'Department'
     },
-    img :{
-        data:Buffer,
-        contentType:String
-    },
+    img:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:'Image'
+    }
+    // img :{
+    //     data:Buffer,
+    //     contentType:String
+    // },
 })
 module.exports = mongoose.model("team",teamSchema)

@@ -9,10 +9,10 @@ const projectSchema = mongoose.Schema({
         type:String,
         required:[true,'Pls type a project Description ']
     },
-    class:{
-        type:String,
-        required:[true,'Pls type a  Category Class ']
-    },
+    // class:{
+    //     type:String,
+    //     required:[true,'Pls type a  Category Class ']
+    // },
     client:{
         type:String,
         required:[true,'Pls type a Client Name']
@@ -29,10 +29,21 @@ const projectSchema = mongoose.Schema({
         type:String,
         required:[true,'Pls type a Consultant']
     },
-    img :{
-        data:Buffer,
-        contentType:String
+    // img :{
+    //     data:Buffer,
+    //     contentType:String
+    // },
+
+    department:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:'Department'
     },
+    img:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:'Image'
+    }
 
 })
 
