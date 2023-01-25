@@ -1,12 +1,15 @@
 const express = require('express')
 // const {MongoClient} = require('mongodb');
 const colors = require('colors')
+// const multer = require('multer');
+// const upload = multer();
 // const ObjectId = require('mongodb').ObjectId
 
 
 const cors = require('cors');
 const dotenv = require('dotenv').config()
 const {errorHandler} = require('./middleware/errorMiddleware')
+const {upload} = require('./middleware/uploadMiddleware')
 const connectDB = require('./config/db')
 const port = process.env.PORT ||  5000;
 
@@ -25,7 +28,9 @@ app.use(express.urlencoded({extended:false}))
 app.use('/api/project',require('./routes/projectRoutes'))
 app.use('/api/team',require('./routes/teamRoutes'))
 app.use('/api/clients',require('./routes/clientsRoutes'))
+app.use('/api/img',require('./routes/imageRoutes'))
 app.use(errorHandler)
+app.use('/upload',express.static('./upload'));
 // const uri = 
 // `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.4t39k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
