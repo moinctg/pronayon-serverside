@@ -1,3 +1,5 @@
+
+//Team Routes 
 const express = require('express')
 const router = express.Router()
 const {getTeam, postTeam, putTeam, deleteTeam} =require('../controllers/teamControllers')

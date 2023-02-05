@@ -1,6 +1,10 @@
 const asyncHandeler = require('express-async-handler')
 const Image = require('../models/imageModel')
 
+// image Upload
+const multer = require('multer')
+const path = require('path')
+
 const getImage = asyncHandeler(async(req,res) =>{
     const image = await Image.find()
     res.status(200).json(image)
@@ -17,17 +21,14 @@ const postImage = asyncHandeler(async(req,res) =>{
         
         img: req.file.path
 
-        // const newUser = req.body;
-        // const result =  await usersCollection.insertOne(newUser)
-        // console.log('got new user',req.body);
-        // console.log('added new suer',result);
-        // res.json(result);
+        
 
         
 
 
        
     })
+    console.log("image found")
     image.save()
     res.status(200).json(image)
 })
@@ -54,11 +55,45 @@ const deleteImage= asyncHandeler(async(req,res) =>{
     await image.remove()
     res.status(200).json({ id: req.params.id })
 })
+
+
+
+// - this is the code for file upload 
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'Images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: '1000000' },
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png|gif/
+        const mimeType = fileTypes.test(file.mimetype)  
+        const extname = fileTypes.test(path.extname(file.originalname))
+
+        if(mimeType && extname) {
+            return cb(null, true)
+        }
+        cb('Give proper files formate to upload')
+    }
+}).single('image')
+
+
+
  
 module.exports ={
 
     getImage,
     postImage,
     putImage,
-   deleteImage
+   deleteImage,
+    upload
 }
+
+
