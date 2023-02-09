@@ -5,49 +5,49 @@ const Image = require('../models/imageModel')
 const multer = require('multer')
 const path = require('path')
 
-const getImage = asyncHandeler(async(req,res) =>{
+const getImage = asyncHandeler(async (req, res) => {
     const image = await Image.find()
     res.status(200).json(image)
 })
-const postImage = asyncHandeler(async(req,res) =>{
-    if(!req.body){
+const postImage = asyncHandeler(async (req, res) => {
+    if (!req.body) {
         res.status(400)
-        throw new Error ('pls add a file');
+        throw new Error('pls add a file');
     }
     const image = await Image.create({
         name: req.body.name,
         desc: req.body.desc,
         // department: req.body.department,
-        
+
         img: req.file.path
 
-        
-
-        
 
 
-       
+
+
+
+
     })
     console.log("image found")
     image.save()
     res.status(200).json(image)
 })
-const putImage = asyncHandeler(async(req,res) =>{
+const putImage = asyncHandeler(async (req, res) => {
     const img = await Image.findById(req.params.id)
-    if(!img){
+    if (!img) {
         res.status(400)
         throw new Error('Project not found')
 
     }
-    const updateImage= await Image.findById(req.params.id,req.body,{
-        new:true
+    const updateImage = await Image.findById(req.params.id, req.body, {
+        new: true
     })
-    
+
     res.status(200).json(updateImage)
 })
-const deleteImage= asyncHandeler(async(req,res) =>{
+const deleteImage = asyncHandeler(async (req, res) => {
     const image = await Image.findById(req.params.id)
-    if(!image){
+    if (!image) {
         res.status(400)
         throw new Error('Project not found')
 
@@ -74,10 +74,10 @@ const upload = multer({
     limits: { fileSize: '1000000' },
     fileFilter: (req, file, cb) => {
         const fileTypes = /jpeg|jpg|png|gif/
-        const mimeType = fileTypes.test(file.mimetype)  
+        const mimeType = fileTypes.test(file.mimetype)
         const extname = fileTypes.test(path.extname(file.originalname))
 
-        if(mimeType && extname) {
+        if (mimeType && extname) {
             return cb(null, true)
         }
         cb('Give proper files formate to upload')
@@ -86,13 +86,13 @@ const upload = multer({
 
 
 
- 
-module.exports ={
+
+module.exports = {
 
     getImage,
     postImage,
     putImage,
-   deleteImage,
+    deleteImage,
     upload
 }
 
