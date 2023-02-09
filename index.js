@@ -1,4 +1,5 @@
 const express = require('express')
+const fs = require('fs');
 // const {MongoClient} = require('mongodb');
 const colors = require('colors')
 // const multer = require('multer');
@@ -16,6 +17,12 @@ const port = process.env.PORT ||  5000;
 
 connectDB()
 const app = express()
+
+// Create upload folder if it does not exist
+const dir = process.env.IMAGE_UPLOAD_DIR;
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir, { recursive: true });
+}
 
 
 

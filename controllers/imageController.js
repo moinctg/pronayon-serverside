@@ -62,7 +62,7 @@ const deleteImage = asyncHandeler(async (req, res) => {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'Images')
+        cb(null,  process.env.IMAGE_UPLOAD_DIR)
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname))
