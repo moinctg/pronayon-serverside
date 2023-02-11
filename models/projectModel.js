@@ -14,14 +14,15 @@ const projectSchema = mongoose.Schema({
     //     required:[true,'Pls type a  Category Class ']
     // },
     client:{
-        type:String,
-        required:[true,'Pls type a Client Name']
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:'Client'
     },
-    Location:{
+    location:{
         type:String,
         required:[true,'Pls type a Location Name']
     },
-    Consultant :{
+    consultant :{
         type:String,
         required:[true,'Pls type a Consultant']
     },
@@ -29,10 +30,7 @@ const projectSchema = mongoose.Schema({
         type:String,
         required:[true,'Pls type a Consultant']
     },
-    // img :{
-    //     data:Buffer,
-    //     contentType:String
-    // },
+    
 
     department:{
         type:mongoose.Schema.Types.ObjectId,

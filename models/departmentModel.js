@@ -6,6 +6,10 @@ const departmentSchema = mongoose.Schema({
         type:String,
         required:[true,'pls type a name']
     },
+    description:{
+        type:String,
+        required:[true,'Pls type your description']
+    }
 })
 
 module.exports = mongoose.model('Department',departmentSchema)

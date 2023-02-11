@@ -14,11 +14,11 @@ const postProject = asyncHandeler(async(req,res) =>{
     const projects = await Project.create({
         title: req.body.title,
         description: req.body.description,
-        class: req.body.class,
         client: req.body.client,
-        Location: req.body.Location,
-        Consultant: req.body.Consultant,
+        location: req.body.location,
+        consultant: req.body.consultant,
         architect: req.body.architect,
+        department: req.body.department,
         img: req.body.img
 
         // const newUser = req.body;

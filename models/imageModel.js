@@ -5,9 +5,15 @@
 var mongoose = require('mongoose');
  
 var imageSchema = new mongoose.Schema({
-    name: {type : String},
-    desc: {type : String},
-    img: {type : String}
+    name: {type : String,
+        required:[true,'Pls type a Image Name ']
+    },
+    description: {type : String,
+        required:[true,'Pls type a Image Description']
+    },
+    
+    
+    img: {type : String, required:[true,'Pls type a Image Description']}
 });
  
 

@@ -14,6 +14,8 @@ const postTeam = asyncHandeler(async(req,res) =>{
         name: req.body.name,
         designation: req.body.designation,
         department: req.body.department,
+        facebook: req.body.facebook,
+        linkdin: req.body.linkdin,
         
         img: req.body.img
 

@@ -14,6 +14,14 @@ const teamSchema = mongoose.Schema({
         required:true,
         ref:'Department'
     },
+    facebook:{
+        type:String,
+        required:[true,'Pls type a  Facebook Account  ']
+    },
+    linkdin:{
+        type:String,
+        required:[true,'Pls type a linkdin Account ']
+    },
     img:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
@@ -23,5 +31,6 @@ const teamSchema = mongoose.Schema({
     //     data:Buffer,
     //     contentType:String
     // },
+    
 })
 module.exports = mongoose.model("team",teamSchema)

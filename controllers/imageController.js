@@ -16,7 +16,7 @@ const postImage = asyncHandeler(async (req, res) => {
     }
     const image = await Image.create({
         name: req.body.name,
-        desc: req.body.desc,
+        description: req.body.description,
         // department: req.body.department,
 
         img: req.file.path
