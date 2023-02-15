@@ -1,3 +1,7 @@
+
+// const webp=require('webp-converter');
+const sharp = require("sharp");
+const util = require("util");
 const asyncHandeler = require('express-async-handler')
 const Image = require('../models/imageModel')
 
@@ -40,6 +44,13 @@ const putImage = asyncHandeler(async (req, res) => {
 
     }
     const updateImage = await Image.findById(req.params.id, req.body, {
+        name: req.body.name,
+        description: req.body.description,
+        // department: req.body.department,
+
+        img: req.file.path,
+
+
         new: true
     })
 
@@ -82,7 +93,27 @@ const upload = multer({
         }
         cb('Give proper files formate to upload')
     }
-}).single('image')
+}).array('image',8)
+
+
+// const { buffer, originalname } = req.body;
+// const timestamp = new Date().toISOString();
+// const ref = `${timestamp}-${originalname}.webp`;
+//  sharp(buffer)
+//   .webp({ quality: 20 })
+//   .toFile("./uploads/" + ref);
+
+
+
+// const { buffer, originalname } = dir
+// const timestamp = new Date().toISOString();
+// const ref = `${timestamp}-${originalname}.webp`;
+//  sharp(buffer)
+//   .webp({ quality: 20 })
+//   .toFile("./uploads/" + ref);
+// const link = `http://localhost:3000/${ref}`;
+// return res.json({ link });
+
 
 
 
