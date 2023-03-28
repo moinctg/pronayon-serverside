@@ -6,6 +6,10 @@ const getProject = asyncHandeler(async(req,res) =>{
     const projects = await Project.find()
     res.status(200).json(projects)
 })
+const getProjectById = asyncHandeler(async(req,res) =>{
+    const projects = await Project.findById(req.params.id)
+    res.status(200).json(projects)
+})
 const postProject = asyncHandeler(async(req,res) =>{
     if(!req.body){
         res.status(400)
@@ -62,6 +66,7 @@ const deleteProject = asyncHandeler(async(req,res) =>{
 module.exports ={
 
     getProject,
+    getProjectById,
     postProject,
     putProject,
     deleteProject

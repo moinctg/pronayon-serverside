@@ -47,6 +47,8 @@ app.use('/api/departments',require('./routes/departmentRoutes'))
 app.use('/api/clients',require('./routes/clientsRoutes'))
 app.use('/api/img',require('./routes/imageRoutes'))
 app.use('/api/testomonial',require('./routes/testomonialRoute'))
+app.use('/api/register',require('./routes/registerRoute'))
+app.use('/api/firebaseRegister',require('./routes/FirebaseWIthRegisterRoute'))
 // error handaler 
 app.use(errorHandler)
 

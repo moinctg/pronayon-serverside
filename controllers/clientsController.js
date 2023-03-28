@@ -5,6 +5,10 @@ const getClients= asyncHandeler(async(req,res) =>{
     const clients = await Client.find()
     res.status(200).json(clients)
 })
+const getClientsById = asyncHandeler(async(req,res) =>{
+    const clients = await Client.findById(req.params.id)
+    res.status(200).json(clients)
+})
 const postClients= asyncHandeler(async(req,res) =>{
     if(!req.body){
         res.status(400)
@@ -58,6 +62,7 @@ const deleteClients= asyncHandeler(async(req,res) =>{
 module.exports ={
 
     getClients,
+    getClientsById,
     postClients,
     putClients,
    deleteClients
