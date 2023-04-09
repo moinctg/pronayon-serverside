@@ -14,6 +14,7 @@ const getImage = asyncHandeler(async (req, res) => {
     res.status(200).json(image)
 })
 const postImage = asyncHandeler(async (req, res) => {
+    console.log(req.body)
     if (!req.body) {
         res.status(400)
         throw new Error('pls add a file');
@@ -23,7 +24,7 @@ const postImage = asyncHandeler(async (req, res) => {
         description: req.body.description,
         // department: req.body.department,
 
-        img: req.file.path
+        image: req.file.path
 
 
 
@@ -93,7 +94,9 @@ const upload = multer({
         }
         cb('Give proper files formate to upload')
     }
-}).array('image',8)
+})
+// .single('img',1)
+.array('image',4)
 
 
 // const { buffer, originalname } = req.body;

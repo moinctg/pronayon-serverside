@@ -13,7 +13,7 @@ var imageSchema = new mongoose.Schema({
     },
     
     
-    img: {type : String, required:[true,'Pls select image']}
+    image: {type : String, required:[true,'Pls select image']}
 });
  
 

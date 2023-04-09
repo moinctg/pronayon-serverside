@@ -27,11 +27,11 @@ if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
-fs.access("./uploads", (error) => {
-  if (error) {
-    fs.mkdirSync("./uploads");
-  }
-});
+// fs.access("./uploads", (error) => {
+//   if (error) {
+//     fs.mkdirSync("./uploads");
+//   }
+// });
 
 
 
@@ -52,7 +52,7 @@ app.use('/api/firebaseRegister',require('./routes/FirebaseWIthRegisterRoute'))
 // error handaler 
 app.use(errorHandler)
 
-// static image folder 
+// // static image folder 
 app.use('/upload',express.static('./upload'));
 
 
