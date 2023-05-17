@@ -27,11 +27,11 @@ if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
-// fs.access("./uploads", (error) => {
-//   if (error) {
-//     fs.mkdirSync("./uploads");
-//   }
-// });
+fs.access("./uploads", (error) => {
+  if (error) {
+    fs.mkdirSync("./uploads");
+  }
+});
 
 
 

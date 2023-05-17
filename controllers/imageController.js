@@ -49,7 +49,7 @@ const putImage = asyncHandeler(async (req, res) => {
         description: req.body.description,
         // department: req.body.department,
 
-        img: req.file.path,
+        image: req.file.path,
 
 
         new: true
@@ -95,8 +95,8 @@ const upload = multer({
         cb('Give proper files formate to upload')
     }
 })
-// .single('img',1)
-.array('image',4)
+.single('img',1)
+// .array('image',4)
 
 
 // const { buffer, originalname } = req.body;
